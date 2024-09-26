@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func main()  {
+func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", home)
@@ -18,7 +18,7 @@ func main()  {
 	err := http.ListenAndServe(":4000", mux)
 
 	if err != nil {
-		log.Fatal("Listening errir")
+		log.Fatal("Listening error")
 	}
 
 }

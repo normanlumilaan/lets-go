@@ -8,7 +8,7 @@ import (
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
-	
+
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
@@ -22,7 +22,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 
 	ts, err := template.ParseFiles(files...)
 
-	if (err != nil) {
+	if err != nil {
 		fmt.Println(err.Error())
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
@@ -38,11 +38,11 @@ func home(w http.ResponseWriter, r *http.Request) {
 }
 
 func snippetView(w http.ResponseWriter, r *http.Request) {
-	
+
 	qId := r.URL.Query().Get("id")
 	id, err := strconv.Atoi(qId)
 
-	if (err != nil || id < 1) {
+	if err != nil || id < 1 {
 		http.NotFound(w, r)
 		return
 	}
@@ -52,7 +52,7 @@ func snippetView(w http.ResponseWriter, r *http.Request) {
 }
 
 func snippetCreate(w http.ResponseWriter, r *http.Request) {
-	
+
 	if r.Method != http.MethodPost {
 		w.Header().Set("Allow", http.MethodPost)
 		http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
@@ -60,4 +60,3 @@ func snippetCreate(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
-	
